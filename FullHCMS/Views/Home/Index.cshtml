@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FullHCMS.Models.Home>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div ng-controller="indexHouses">
+    <div class="container-fluid bg-info">
+        <div class="col-md-10">
+            <input id="Search" ng-model="search.title" type="search" class="form-control" placeholder="Search" />
+        </div>
+        <div class="col-md-2">
+            <a href="@Url.Action("Create", "Home")" class="btn btn-default pull-right"><i class="glyphicon glyphicon-file"></i>Create New</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        @foreach (var item in Model)
+        {
+            <div class="row house-row">
+                <div class="col-md-5">
+                    <label>Title</label>:
+                    @Html.DisplayFor(modelItem => item.Title)
+                    <br />
+                    <label>Description</label>:
+                    @Html.DisplayFor(modelItem => item.LongDescription)
+                    <br />
+                    <label>Price</label>:
+                    @Html.DisplayFor(modelItem => item.Price)
+                    <br />
+                    <label>Size:</label>:
+                    @Html.DisplayFor(modelItem => item.Size) mt2.
+                </div>
+                <div class="col-md-3">
+                    <label>Address</label>:
+                    <address>
+                        @Html.DisplayFor(modelItem => item.Address1)
+                        @Html.DisplayFor(modelItem => item.Address2)
+                        <br />
+                        CP @Html.DisplayFor(modelItem => item.PostalCode)
+                        @Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.State)
+                    </address>
+                </div>
+                <div class="col-md-3">
+                    <label>Representative</label>:
+                    <address>
+                        @Html.DisplayFor(modelItem => item.Seller.FullName) <br />
+                        <a href="mailto:#">@Html.DisplayFor(modelItem => item.Seller.Email)</a>
+                    </address>
+                </div>
+                <div class="col-md-1">
+                    <div class="pull-right">
+                        <a href="@Url.Action("Edit", "Home", new { id = item.HomeId })"><i class="glyphicon glyphicon-pencil"></i></a> |
+                        <a href="@Url.Action("Delete", "Home", new { id = item.HomeId })"><i class="glyphicon glyphicon-trash"></i></a>
+                    </div>
+               </div>
+            </div>
+        }
+    </div>
+</div>
