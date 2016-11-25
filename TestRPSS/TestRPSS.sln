@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "TestRPSS", "TestRPSS\TestRPSS.rptproj", "{BC420172-4164-4786-8192-0ECB3F8CFEE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC420172-4164-4786-8192-0ECB3F8CFEE8}.Debug|Default.ActiveCfg = Debug
+		{BC420172-4164-4786-8192-0ECB3F8CFEE8}.Debug|Default.Build.0 = DebugLocal
+		{BC420172-4164-4786-8192-0ECB3F8CFEE8}.Debug|Default.Deploy.0 = DebugLocal
+		{BC420172-4164-4786-8192-0ECB3F8CFEE8}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{BC420172-4164-4786-8192-0ECB3F8CFEE8}.DebugLocal|Default.Build.0 = DebugLocal
+		{BC420172-4164-4786-8192-0ECB3F8CFEE8}.Release|Default.ActiveCfg = Release
+		{BC420172-4164-4786-8192-0ECB3F8CFEE8}.Release|Default.Build.0 = Release
+		{BC420172-4164-4786-8192-0ECB3F8CFEE8}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

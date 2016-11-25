@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="FHouseDB">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=VSKRACKOS-PC;Initial Catalog=FullHouse</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>21c7e596-7787-479c-809b-b82bd0814ef2</DataSourceID>
+</RptDataSource>
