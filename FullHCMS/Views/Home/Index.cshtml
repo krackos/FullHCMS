@@ -5,56 +5,81 @@
 }
 
 <h2>Index</h2>
-<div ng-controller="indexHouses">
+<div ng-controller="HousesController as home">
     <div class="container-fluid bg-info">
         <div class="col-md-10">
-            <input id="Search" ng-model="search.title" type="search" class="form-control" placeholder="Search" />
+            <input id="Search" ng-model="search.Title" type="search" class="form-control" placeholder="Search" />
         </div>
         <div class="col-md-2">
             <a href="@Url.Action("Create", "Home")" class="btn btn-default pull-right"><i class="glyphicon glyphicon-file"></i>Create New</a>
         </div>
     </div>
     <div class="container-fluid">
-        @foreach (var item in Model)
-        {
-            <div class="row house-row">
-                <div class="col-md-5">
-                    <label>Title</label>:
-                    @Html.DisplayFor(modelItem => item.Title)
-                    <br />
-                    <label>Description</label>:
-                    @Html.DisplayFor(modelItem => item.LongDescription)
-                    <br />
-                    <label>Price</label>:
-                    @Html.DisplayFor(modelItem => item.Price)
-                    <br />
-                    <label>Size:</label>:
-                    @Html.DisplayFor(modelItem => item.Size) mt2.
-                </div>
-                <div class="col-md-3">
-                    <label>Address</label>:
-                    <address>
-                        @Html.DisplayFor(modelItem => item.Address1)
-                        @Html.DisplayFor(modelItem => item.Address2)
-                        <br />
-                        CP @Html.DisplayFor(modelItem => item.PostalCode)
-                        @Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.State)
-                    </address>
-                </div>
-                <div class="col-md-3">
-                    <label>Representative</label>:
-                    <address>
-                        @Html.DisplayFor(modelItem => item.Seller.FullName) <br />
-                        <a href="mailto:#">@Html.DisplayFor(modelItem => item.Seller.Email)</a>
-                    </address>
-                </div>
-                <div class="col-md-1">
-                    <div class="pull-right">
-                        <a href="@Url.Action("Edit", "Home", new { id = item.HomeId })"><i class="glyphicon glyphicon-pencil"></i></a> |
-                        <a href="@Url.Action("Delete", "Home", new { id = item.HomeId })"><i class="glyphicon glyphicon-trash"></i></a>
-                    </div>
-               </div>
+        <div class="row house-row" ng-repeat="house in sellers | filter:search">
+            <div class="col-md-5">
+                <label>Title</label>:
+                {{house.Title}}
+                <br />
+                <label>Description</label>:
+                {{house.LongDescription}}
+                <br />
+                <label>Price</label>:
+                {{house.Price | currency:'$': 2}}
+                <br />
+                <label>Size:</label>:
+                {{house.Size}} mt2.
             </div>
-        }
+            <div class="col-md-3">
+                <label>Address</label>:
+                <address>
+                    {{house.Address1}}
+                    {{house.Address2}}
+                    <br />
+                    CP {{house.PostalCode}}
+                    {{house.City}}, {{house.State}}
+                </address>
+            </div>
+            <div class="col-md-3">
+                <label>Representative</label>:
+                <address>
+                    {{house.Seller.FullName}} <br />
+                    <a href="mailto:#">{{house.Seller.Email}}</a>
+                </address>
+            </div>
+            <div class="col-md-1">
+                <div class="pull-right">
+                    <a href="@Url.Action("Edit", "Home")/{{house.HomeId}}"><i class="glyphicon glyphicon-pencil"></i></a> |
+                    <a href="#" data-toggle="modal" data-target=".bd-example-modal-sm" ng-click="home.setHouseId(house.HomeId)"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4>Delete</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <form action="{{'@Url.Action("Delete", "Home")' + '/' + rejectHome }}" id="modalForm" method="post" class="ng-pristine ng-valid">
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" value="Delete" class="btn btn-default" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

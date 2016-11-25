@@ -13,7 +13,17 @@ namespace FullHCMS.Controllers
 {
     public class HomeAPIController : ApiController
     {
-        private FullHouseContext db = new FullHouseContext();
+        private FullHouseContext db;
+
+        public HomeAPIController()
+        {
+            db = new FullHouseContext();
+        }
+
+        public HomeAPIController(FullHouseContext contextDB)
+        {
+            this.db = contextDB; 
+        }
         public IEnumerable<Home> GetAllHomes()
         {
             var homes = db.Homes.Include(h => h.Seller);

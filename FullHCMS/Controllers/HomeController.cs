@@ -13,28 +13,23 @@ namespace FullHCMS.Controllers
 {
     public class HomeController : Controller
     {
-        private FullHouseContext db = new FullHouseContext();
+        private FullHouseContext db;
+
+        public HomeController()
+        {
+            db = new FullHouseContext();
+        }
+
+        public HomeController(FullHouseContext contextDB)
+        {
+            this.db = contextDB; 
+        }
 
         // GET: Home
         public ActionResult Index()
         {
             var homes = db.Homes.Include(h => h.Seller);
             return View(homes.ToList());
-        }
-
-        // GET: Home/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Home home = db.Homes.Find(id);
-            if (home == null)
-            {
-                return HttpNotFound();
-            }
-            return View(home);
         }
 
         // GET: Home/Create
@@ -88,21 +83,6 @@ namespace FullHCMS.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.SellerId = new SelectList(db.Sellers, "SellerId", "FullName", home.SellerId);
-            return View(home);
-        }
-
-        // GET: Home/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Home home = db.Homes.Find(id);
-            if (home == null)
-            {
-                return HttpNotFound();
-            }
             return View(home);
         }
 
